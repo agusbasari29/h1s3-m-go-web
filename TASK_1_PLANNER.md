@@ -49,6 +49,7 @@ Analyze the frontend requirements and create task breakdown for the ONT Device M
 ## Output
 
 Create issues with:
+
 - Clear titles
 - Detailed descriptions
 - Subtask checklists

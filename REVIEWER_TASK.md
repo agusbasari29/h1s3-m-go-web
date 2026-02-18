@@ -21,6 +21,7 @@ git diff main --name-only
 ### Step 2: Review Code
 
 Check:
+
 - Code quality (AGENTS.md compliance)
 - TypeScript types are correct
 - Tailwind CSS conventions followed
@@ -41,12 +42,15 @@ npm run build
 ## Code Review
 
 ### ✅ Looks Good
+
 - [list positive aspects]
 
 ### ⚠️ Issues Found
+
 - [list issues]
 
 ### Summary
+
 [APPROVED / CHANGES REQUESTED]
 ```
 

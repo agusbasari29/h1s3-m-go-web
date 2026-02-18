@@ -28,6 +28,7 @@ gh pr list
 ### Step 2: Assign Task to Agent
 
 **For Builder:**
+
 ```
 You are the Builder agent.
 
@@ -38,6 +39,7 @@ Follow BUILDER_TASK.md template.
 ```
 
 **For Tester:**
+
 ```
 You are the Tester agent.
 
@@ -51,6 +53,7 @@ Follow TESTER_TASK.md template.
 ```
 
 **For Reviewer:**
+
 ```
 You are the Reviewer agent.
 
@@ -69,6 +72,7 @@ Follow REVIEWER_TASK.md template.
 ### Step 3: Track Progress
 
 Update WORKFLOW_TRACKING.md with:
+
 - Current branch per task
 - Status (pending/in_progress/merged)
 - Blocker if any

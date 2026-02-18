@@ -1,0 +1,129 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "opencode",
+  "model": "anthropic/claude-sonnet-4-20250529",
+  "small_model": "anthropic/claude-haiku-4-20250529",
+
+  "agent": {
+    "planner": {
+      "description": "Analyzes requirements and creates detailed task breakdowns",
+      "mode": "primary",
+      "model": "anthropic/claude-haiku-4-20250529",
+      "temperature": 0.3,
+      "permission": {
+        "bash": "ask",
+        "edit": "allow",
+        "write": "allow"
+      },
+      "steps": 8
+    },
+    "builder": {
+      "description": "Implements features, components, and pages following specifications",
+      "mode": "primary",
+      "model": "anthropic/claude-sonnet-4-20250529",
+      "temperature": 0.3,
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "write": "allow"
+      },
+      "steps": 10
+    },
+    "tester": {
+      "description": "Validates implementation quality through testing",
+      "mode": "primary",
+      "model": "anthropic/claude-haiku-4-20250529",
+      "temperature": 0.2,
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "write": "allow"
+      },
+      "steps": 8
+    },
+    "reviewer": {
+      "description": "Reviews code quality and implementation standards",
+      "mode": "primary",
+      "model": "anthropic/claude-haiku-4-20250529",
+      "temperature": 0.1,
+      "permission": {
+        "bash": "ask",
+        "edit": "allow",
+        "write": "allow"
+      },
+      "steps": 6
+    },
+    "coordinator": {
+      "description": "Orchestrates tasks across all agents and manages workflow",
+      "mode": "primary",
+      "model": "anthropic/claude-haiku-4-20250529",
+      "temperature": 0.2,
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "write": "allow",
+        "task": "allow"
+      },
+      "steps": 5
+    },
+    "code-reviewer": {
+      "description": "Reviews code for quality and best practices",
+      "mode": "primary",
+      "model": "anthropic/claude-haiku-4-20250529",
+      "temperature": 0.1,
+      "permission": {
+        "bash": "ask",
+        "edit": "allow",
+        "write": "allow"
+      }
+    }
+  },
+
+  "permission": {
+    "edit": "allow",
+    "bash": "allow",
+    "webfetch": "allow"
+  },
+
+  "autoupdate": true,
+  "share": "manual",
+
+  "tools": {
+    "write": true,
+    "edit": true,
+    "bash": true,
+    "read": true,
+    "glob": true,
+    "grep": true,
+    "webfetch": true,
+    "task": true,
+    "question": true
+  },
+
+  "instructions": ["AGENTS.md", ".opencode/LOADING_AGENTS.md"],
+
+  "watcher": {
+    "ignore": [
+      "node_modules/**",
+      "dist/**",
+      ".next/**",
+      ".git/**",
+      ".opencode/**",
+      "build/**"
+    ]
+  },
+
+  "formatter": {
+    "prettier": {
+      "disabled": false
+    }
+  },
+
+  "provider": {
+    "anthropic": {
+      "options": {
+        "apiKey": "{env:ANTHROPIC_API_KEY}"
+      }
+    }
+  }
+}
