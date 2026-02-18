@@ -37,6 +37,7 @@ Create issue with subtasks:
 
 ```markdown
 ## Subtasks
+
 - [ ] Create DeviceList component
 - [ ] Create DeviceCard component
 - [ ] Add devices page

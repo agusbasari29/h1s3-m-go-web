@@ -1,0 +1,59 @@
+{
+  "name": "h1s3-m-go-web",
+  "version": "1.0.0",
+  "description": "ONT Device Management Dashboard - Frontend Development",
+  "agents": [
+    {
+      "name": "planner",
+      "role": "Planner Agent",
+      "description": "Analyzes requirements and creates detailed task breakdowns",
+      "path": "./.opencode/agents/planner.json"
+    },
+    {
+      "name": "builder",
+      "role": "Builder Agent",
+      "description": "Implements features, components, and pages following specifications",
+      "path": "./.opencode/agents/builder.json"
+    },
+    {
+      "name": "tester",
+      "role": "Tester Agent",
+      "description": "Validates implementation quality through testing and verification",
+      "path": "./.opencode/agents/tester.json"
+    },
+    {
+      "name": "reviewer",
+      "role": "Reviewer Agent",
+      "description": "Reviews code quality and implementation standards",
+      "path": "./.opencode/agents/reviewer.json"
+    },
+    {
+      "name": "coordinator",
+      "role": "Coordinator Agent",
+      "description": "Orchestrates tasks across all agents and manages workflow",
+      "path": "./.opencode/agents/coordinator.json"
+    }
+  ],
+  "skills": [
+    {
+      "name": "planner",
+      "path": "./.opencode/skills/planner/SKILL.md"
+    },
+    {
+      "name": "builder",
+      "path": "./.opencode/skills/builder/SKILL.md"
+    },
+    {
+      "name": "tester",
+      "path": "./.opencode/skills/tester/SKILL.md"
+    },
+    {
+      "name": "reviewer",
+      "path": "./.opencode/skills/reviewer/SKILL.md"
+    },
+    {
+      "name": "coordinator",
+      "path": "./.opencode/skills/coordinator/SKILL.md"
+    }
+  ]
+}

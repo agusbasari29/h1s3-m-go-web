@@ -1,0 +1,39 @@
+{
+  "agents": [
+    {
+      "name": "planner",
+      "role": "Planner Agent",
+      "description": "Analyzes requirements and creates detailed task breakdowns",
+      "skill_file": ".opencode/skills/planner/SKILL.md",
+      "agent_file": ".opencode/agents/planner.json"
+    },
+    {
+      "name": "builder",
+      "role": "Builder Agent",
+      "description": "Implements features, components, and pages following specifications",
+      "skill_file": ".opencode/skills/builder/SKILL.md",
+      "agent_file": ".opencode/agents/builder.json"
+    },
+    {
+      "name": "tester",
+      "role": "Tester Agent",
+      "description": "Validates implementation quality through testing and verification",
+      "skill_file": ".opencode/skills/tester/SKILL.md",
+      "agent_file": ".opencode/agents/tester.json"
+    },
+    {
+      "name": "reviewer",
+      "role": "Reviewer Agent",
+      "description": "Reviews code quality and implementation standards",
+      "skill_file": ".opencode/skills/reviewer/SKILL.md",
+      "agent_file": ".opencode/agents/reviewer.json"
+    },
+    {
+      "name": "coordinator",
+      "role": "Coordinator Agent",
+      "description": "Orchestrates tasks across all agents and manages workflow",
+      "skill_file": ".opencode/skills/coordinator/SKILL.md",
+      "agent_file": ".opencode/agents/coordinator.json"
+    }
+  ]
+}

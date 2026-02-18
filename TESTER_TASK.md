@@ -35,6 +35,7 @@ npm run build
 ### Step 4: Report Results
 
 **If OK:**
+
 ```
 Tests pass ✅
 - npm test: PASS
@@ -44,6 +45,7 @@ Tests pass ✅
 ```
 
 **If Failed:**
+
 ```
 Tests failed ❌
 [error logs]

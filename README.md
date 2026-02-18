@@ -72,13 +72,13 @@ npm start
 
 The frontend connects to the h1s3-m-go backend:
 
-| Endpoint | Description |
-|----------|-------------|
-| POST /devices | Register device |
-| GET /devices | List devices |
-| GET /devices/:id | Get device details |
-| DELETE /devices/:id | Delete device |
-| GET /devices/:id/history | Device history |
+| Endpoint                  | Description         |
+| ------------------------- | ------------------- |
+| POST /devices             | Register device     |
+| GET /devices              | List devices        |
+| GET /devices/:id          | Get device details  |
+| DELETE /devices/:id       | Delete device       |
+| GET /devices/:id/history  | Device history      |
 | POST /devices/:id/refresh | Refresh device data |
 
 ## Project Structure
