@@ -31,4 +31,44 @@ describe("DeviceChart", () => {
     );
     expect(container.firstChild).toBeInTheDocument();
   });
+
+  it("renders area chart type", () => {
+    const { container } = render(<DeviceChart data={mockData} type="area" />);
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders with custom data key", () => {
+    const { container } = render(
+      <DeviceChart data={mockData} dataKey="custom" />,
+    );
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders with custom title", () => {
+    const { getByText } = render(
+      <DeviceChart data={mockData} title="Custom Title" />,
+    );
+    expect(getByText("Custom Title")).toBeInTheDocument();
+  });
+
+  it("renders DeviceCharts component with cpu data", () => {
+    const { container } = render(
+      <DeviceChart data={mockData} title="CPU Usage" dataKey="cpu" />,
+    );
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders DeviceCharts component with memory data", () => {
+    const { container } = render(
+      <DeviceChart data={mockData} title="Memory Usage" dataKey="memory" />,
+    );
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders DeviceCharts component with network data", () => {
+    const { container } = render(
+      <DeviceChart data={mockData} title="Network Traffic" dataKey="network" />,
+    );
+    expect(container.firstChild).toBeInTheDocument();
+  });
 });

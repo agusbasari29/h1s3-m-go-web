@@ -69,4 +69,57 @@ describe("DeviceList", () => {
     render(<DeviceList devices={mockDevices} />);
     fireEvent.click(screen.getByRole("button", { name: "Grid view" }));
   });
+
+  it("handles filter change with status", () => {
+    render(<DeviceList devices={mockDevices} />);
+    fireEvent.click(screen.getByRole("button", { name: "Filters" }));
+    fireEvent.change(screen.getByLabelText("Status"), {
+      target: { value: "online" },
+    });
+    expect(screen.getByText("Showing 1 of 2 devices")).toBeInTheDocument();
+  });
+
+  it("handles filter change with type", () => {
+    render(<DeviceList devices={mockDevices} />);
+    fireEvent.click(screen.getByRole("button", { name: "Filters" }));
+    fireEvent.change(screen.getByLabelText("Type"), {
+      target: { value: "server" },
+    });
+    expect(screen.getByText("Showing 1 of 2 devices")).toBeInTheDocument();
+  });
+
+  it("handles clear filters", () => {
+    render(<DeviceList devices={mockDevices} />);
+    fireEvent.click(screen.getByRole("button", { name: "Filters" }));
+    fireEvent.change(screen.getByLabelText("Status"), {
+      target: { value: "online" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "Clear" }));
+    expect(screen.getByText("Showing 2 of 2 devices")).toBeInTheDocument();
+  });
+
+  it("renders list view mode", () => {
+    render(<DeviceList devices={mockDevices} />);
+    fireEvent.click(screen.getByRole("button", { name: "List view" }));
+    expect(screen.getByText("Device 1")).toBeInTheDocument();
+    expect(screen.getByText("Device 2")).toBeInTheDocument();
+  });
+
+  it("calls onDeviceClick when device is clicked", () => {
+    const onDeviceClick = jest.fn();
+    render(<DeviceList devices={mockDevices} onDeviceClick={onDeviceClick} />);
+    fireEvent.click(screen.getByText("Device 1"));
+    expect(onDeviceClick).toHaveBeenCalledWith(mockDevices[0]);
+  });
+
+  it("calls onDeviceAction when device action is triggered", () => {
+    const onDeviceAction = jest.fn();
+    render(
+      <DeviceList devices={mockDevices} onDeviceAction={onDeviceAction} />,
+    );
+    fireEvent.click(screen.getByText("Device 1"));
+    const restartButtons = screen.getAllByText("Restart");
+    fireEvent.click(restartButtons[0]);
+    expect(onDeviceAction).toHaveBeenCalledWith(mockDevices[0], "restart");
+  });
 });
