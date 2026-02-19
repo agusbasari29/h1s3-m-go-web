@@ -4,12 +4,13 @@ import {
   API_RETRY,
   DEVICE_ENDPOINTS,
 } from "./constants";
-import type {
+import {
   Device,
   DeviceHistory,
   DeviceMetrics,
   DeviceStats,
   PaginatedResponse,
+  ApiResponse,
 } from "@/types/device";
 
 class ApiError extends Error {
@@ -161,18 +162,36 @@ export const api = {
 
 export const deviceApi = {
   list: (filters?: Record<string, string | number | undefined>) =>
-    api.get<PaginatedResponse<Device>>(DEVICE_ENDPOINTS.LIST, filters),
+    api.get<ApiResponse<PaginatedResponse<Device>>>(
+      DEVICE_ENDPOINTS.LIST,
+      filters,
+    ),
 
-  detail: (id: string) => api.get<Device>(DEVICE_ENDPOINTS.DETAIL(id)),
+  detail: (id: string) =>
+    api.get<ApiResponse<Device>>(DEVICE_ENDPOINTS.DETAIL(id)),
 
-  stats: () => api.get<DeviceStats>(DEVICE_ENDPOINTS.STATS),
+  stats: () => api.get<ApiResponse<DeviceStats>>(DEVICE_ENDPOINTS.STATS),
 
   history: (
     id: string,
     params?: { start?: string; end?: string; limit?: number },
-  ) => api.get<DeviceHistory[]>(DEVICE_ENDPOINTS.HISTORY(id), params),
+  ) =>
+    api.get<ApiResponse<DeviceHistory[]>>(DEVICE_ENDPOINTS.HISTORY(id), params),
 
-  metrics: (id: string) => api.get<DeviceMetrics>(DEVICE_ENDPOINTS.METRICS(id)),
+  metrics: (id: string) =>
+    api.get<ApiResponse<DeviceMetrics>>(DEVICE_ENDPOINTS.METRICS(id)),
+
+  create: (data: Partial<Device>) =>
+    api.post<ApiResponse<Device>>(DEVICE_ENDPOINTS.LIST, data),
+
+  update: (id: string, data: Partial<Device>) =>
+    api.put<ApiResponse<Device>>(DEVICE_ENDPOINTS.DETAIL(id), data),
+
+  delete: (id: string) =>
+    api.delete<ApiResponse<Device>>(DEVICE_ENDPOINTS.DETAIL(id)),
+
+  refresh: (id: string) =>
+    api.post<ApiResponse<Device>>(`${DEVICE_ENDPOINTS.DETAIL(id)}/refresh`),
 };
 
 export { ApiError };

@@ -16,6 +16,7 @@ const customJestConfig = {
     "!src/**/*.d.ts",
     "!src/**/*.stories.tsx",
   ],
+  transformIgnorePatterns: ["/node_modules/(?!(next)/)"],
 };
 
 module.exports = createJestConfig(customJestConfig);
