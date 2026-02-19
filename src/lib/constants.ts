@@ -11,6 +11,7 @@ export const DEVICE_ENDPOINTS = {
   STATS: "/devices/stats",
   HISTORY: (id: string) => `/devices/${id}/history`,
   METRICS: (id: string) => `/devices/${id}/metrics`,
+  REFRESH: (id: string) => `/devices/${id}/refresh`,
 };
 
 export const STATUS_COLORS = {
