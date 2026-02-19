@@ -1,7 +1,39 @@
 import { render, fireEvent } from "@testing-library/react";
 import { Sidebar } from "./Sidebar";
 
+const mockUsePathname = jest.fn(() => "/");
+
+jest.mock("next/navigation", () => ({
+  usePathname: () => mockUsePathname(),
+}));
+
+jest.mock("next/link", () => {
+  return function MockLink({
+    children,
+    href,
+    onClick,
+    className,
+    title,
+  }: {
+    children: React.ReactNode;
+    href: string;
+    onClick?: () => void;
+    className?: string;
+    title?: string;
+  }) {
+    return (
+      <a href={href} onClick={onClick} className={className} title={title}>
+        {children}
+      </a>
+    );
+  };
+});
+
 describe("Sidebar", () => {
+  beforeEach(() => {
+    mockUsePathname.mockReturnValue("/");
+  });
+
   it("renders correctly", () => {
     const { container } = render(<Sidebar />);
     expect(container.firstChild).toBeInTheDocument();
@@ -51,11 +83,27 @@ describe("Sidebar", () => {
     expect(container.querySelector(".fixed.inset-0")).not.toBeInTheDocument();
   });
 
-  it("activates navigation item on click", () => {
+  it("highlights Dashboard when pathname is /", () => {
+    mockUsePathname.mockReturnValue("/");
     const { container } = render(<Sidebar />);
     const dashboardLink = container.querySelector('a[href="/"]');
-    fireEvent.click(dashboardLink!);
     expect(dashboardLink).toHaveClass("bg-blue-50 text-blue-600");
+  });
+
+  it("highlights Devices when pathname is /devices", () => {
+    mockUsePathname.mockReturnValue("/devices");
+    const { container } = render(<Sidebar />);
+    const devicesLink = container.querySelector('a[href="/devices"]');
+    expect(devicesLink).toHaveClass("bg-blue-50 text-blue-600");
+    const dashboardLink = container.querySelector('a[href="/"]');
+    expect(dashboardLink).not.toHaveClass("bg-blue-50");
+  });
+
+  it("highlights Devices for sub-routes like /devices/123", () => {
+    mockUsePathname.mockReturnValue("/devices/123");
+    const { container } = render(<Sidebar />);
+    const devicesLink = container.querySelector('a[href="/devices"]');
+    expect(devicesLink).toHaveClass("bg-blue-50 text-blue-600");
   });
 
   it("closes mobile menu when navigation item is clicked", () => {

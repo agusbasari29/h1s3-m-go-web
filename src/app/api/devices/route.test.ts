@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable */
 import { GET, POST } from "@/app/api/devices/route";
 
 describe("GET /api/devices", () => {

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable */
 import { GET, PUT, DELETE } from "@/app/api/devices/[id]/route";
 
 const mockParams = Promise.resolve({ id: "1" });
