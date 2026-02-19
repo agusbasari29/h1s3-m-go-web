@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
@@ -31,7 +33,7 @@ const navItems: NavItem[] = [
 export const Sidebar: React.FC<SidebarProps> = ({ className }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState("/");
+  const pathname = usePathname();
 
   return (
     <>
@@ -76,16 +78,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ className }) => {
         <nav className="flex-1 space-y-1 p-2">
           {navItems.map((item) => {
             const Icon = item.icon;
-            const isActive = activeItem === item.href;
+            const isActive =
+              item.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(item.href);
 
             return (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
-                onClick={(e) => {
-                  setActiveItem(item.href);
-                  setIsMobileOpen(false);
-                }}
+                onClick={() => setIsMobileOpen(false)}
                 className={cn(
                   "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
                   isActive
@@ -96,7 +98,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ className }) => {
               >
                 <Icon className="h-5 w-5 flex-shrink-0" />
                 {!isCollapsed && <span>{item.label}</span>}
-              </a>
+              </Link>
             );
           })}
         </nav>

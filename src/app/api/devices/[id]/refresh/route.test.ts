@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable */
 import { POST } from "@/app/api/devices/[id]/refresh/route";
 
 describe("POST /api/devices/:id/refresh", () => {

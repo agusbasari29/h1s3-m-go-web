@@ -13,7 +13,7 @@ import {
 } from "recharts";
 
 export interface DeviceChartProps {
-  data: Array<{ time: string; value: number }>;
+  data: Array<{ time: string; [key: string]: string | number }>;
   title?: string;
   dataKey?: string;
   color?: string;
@@ -83,9 +83,9 @@ export const DeviceChart: React.FC<DeviceChartProps> = ({
 };
 
 export interface DeviceChartsProps {
-  cpuData?: Array<{ time: string; value: number }>;
-  memoryData?: Array<{ time: string; value: number }>;
-  networkData?: Array<{ time: string; value: number }>;
+  cpuData?: Array<{ time: string; cpu: number }>;
+  memoryData?: Array<{ time: string; memory: number }>;
+  networkData?: Array<{ time: string; network: number }>;
   className?: string;
 }
 
